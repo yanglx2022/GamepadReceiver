@@ -1,0 +1,9 @@
+#忽略以下目录
+DebugConfig/
+Listings/
+Objects/
+
+#忽略以下文件
+*.uvguix.*
+*.uvoptx
+*.scvd
