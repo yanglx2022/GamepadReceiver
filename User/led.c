@@ -44,6 +44,13 @@ void LED_BLUE(uint8_t state)
 	}
 }
 
+// ËùÓÐLED
+void LED_ALL(uint8_t state)
+{
+	LED_RED(state);
+	LED_BLUE(state);
+}
+
 
 
 

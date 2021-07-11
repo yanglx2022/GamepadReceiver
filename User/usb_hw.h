@@ -32,7 +32,8 @@ extern  __IO uint32_t DeviceState;
 #define USB_CONNECT_GPIO	GPIOA
 #define USB_CONNECT_PIN		GPIO_Pin_8
 
-
+void USB_IRQ_Enable(void);
+void USB_IRQ_Disable(void);
 void USB_HW_Init(void);
 void USB_Connect(bool con);
 uint8_t USB_Send(uint8_t* data);

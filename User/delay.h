@@ -9,9 +9,9 @@
 
 #include "stm32f10x.h"
 
-void Delay_Init(void);
 void delay_us(uint16_t num);
 void delay_ms(uint32_t num);
+void delay_alarm_ms(uint16_t num);
 
 
 #ifdef __cplusplus

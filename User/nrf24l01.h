@@ -1,8 +1,11 @@
 /**********************
 * 2.4G无线  nRF24L01
 **********************/
-#ifndef __NRF24L01__
-#define __NRF24L01__
+#ifndef __NRF24L01_H
+#define __NRF24L01_H
+#ifdef __cplusplus
+ extern "C" {
+#endif
 
 #include "stm32f10x.h"
 
@@ -58,11 +61,16 @@
 //                                        FUNCTION's PROTOTYPES                                                       //
 //********************************************************************************************************************//
 
-#define PAYLOAD_WIDTH 		10  		// 数据宽度(1~32bytes)
+extern uint8_t rx_received;
+extern uint8_t rx_payload[32];
 
-
-uint8_t NRF24L01_Init(void);
+ErrorStatus NRF24L01_Init(void);
+void NRF24L01_RF_CH(uint8_t rf_ch);
+void NRF24L01_RX_Mode(uint32_t address, uint8_t data_width);
 
 //********************************************************************************************************************//
+#ifdef __cplusplus
+}
 #endif
+#endif /*__NRF24L01_H */
 

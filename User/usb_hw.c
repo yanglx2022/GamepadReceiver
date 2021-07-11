@@ -47,6 +47,27 @@ void (*pEpInt_OUT[7])(void) =
 	NOP_Process,
 };
 
+// USB中断开
+void USB_IRQ_Enable(void)
+{
+	NVIC_InitTypeDef NVIC_InitStructure;
+  NVIC_InitStructure.NVIC_IRQChannel = USB_LP_CAN1_RX0_IRQn;
+  NVIC_InitStructure.NVIC_IRQChannelPreemptionPriority = 1;
+  NVIC_InitStructure.NVIC_IRQChannelSubPriority = 0;
+  NVIC_InitStructure.NVIC_IRQChannelCmd = ENABLE;
+  NVIC_Init(&NVIC_InitStructure);
+}
+
+// USB中断关
+void USB_IRQ_Disable(void)
+{
+	NVIC_InitTypeDef NVIC_InitStructure;
+  NVIC_InitStructure.NVIC_IRQChannel = USB_LP_CAN1_RX0_IRQn;
+  NVIC_InitStructure.NVIC_IRQChannelPreemptionPriority = 1;
+  NVIC_InitStructure.NVIC_IRQChannelSubPriority = 0;
+  NVIC_InitStructure.NVIC_IRQChannelCmd = DISABLE;
+  NVIC_Init(&NVIC_InitStructure);
+}
 
 // USB硬件初始化
 void USB_HW_Init(void)
@@ -66,17 +87,11 @@ void USB_HW_Init(void)
   GPIO_Init(USB_CONNECT_GPIO, &GPIO_InitStructure);
 	USB_Connect(FALSE);
 	// 设置USB时钟
-	RCC_USBCLKConfig(RCC_USBCLKSource_PLLCLK_1Div5);	// 72/48=1.5分频
+	RCC_USBCLKConfig(RCC_USBCLKSource_PLLCLK_Div1);		// 主频48MHz无需分频
 	RCC_APB1PeriphClockCmd(RCC_APB1Periph_USB, ENABLE);
 	// 配置USB中断
-	NVIC_InitTypeDef NVIC_InitStructure;
-  NVIC_InitStructure.NVIC_IRQChannel = USB_LP_CAN1_RX0_IRQn;
-  NVIC_InitStructure.NVIC_IRQChannelPreemptionPriority = 1;
-  NVIC_InitStructure.NVIC_IRQChannelSubPriority = 0;
-  NVIC_InitStructure.NVIC_IRQChannelCmd = ENABLE;
-  NVIC_Init(&NVIC_InitStructure);
+	USB_IRQ_Enable();
 }
-
 
 // USB中断服务
 void USB_LP_CAN1_RX0_IRQHandler(void)
