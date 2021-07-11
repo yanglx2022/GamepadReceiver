@@ -4,7 +4,7 @@
 
 STM32F103C8T6
 
-电路：https://lceda.cn/account/user/projects/index/detail?project=9822f0cbfdc648e0abd1a2209b84b8ee&folder=all
+电路：https://lceda.cn/yanglx/gamepad_receiver
 
 与RCTransmitter 2.4G航模遥控器配对使用，连接电脑为USB Gamepad设备，使遥控器作为无线游戏手柄使用
 
